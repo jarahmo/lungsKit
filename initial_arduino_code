@@ -1,0 +1,32 @@
+/*Takes voltage readings from NO2 sensor and converts to resistance
+ using the formula:
+ Rs = [Rl / (Vcc - Vs)] * Vs      
+ 
+ Rs - resistance
+ Rl - load resistor (10,000)
+ Vcc - sensor supply voltage (2.5)
+ Vs - voltage read from sensor
+ 
+ NO2 (ppm) = Rs/Ro
+ 
+ Ro - resistance under air (avg = 2.2, min = 0.8, max = 8)
+ */
+
+int vs;
+
+void setup () {
+  pinMode (3,OUTPUT);
+  pinMode(5,OUTPUT);
+  Serial.begin(9600); 
+}
+
+void loop() {
+  digitalWrite(3,2.5);
+  digitalWrite(5,2.5);
+  vs = analogRead(A0); /*Voltage from sensor being read*/
+
+  Serial.println(vs);
+
+  delay(1000);
+}
+
